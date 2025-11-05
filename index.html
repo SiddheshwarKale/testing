@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do Application</title>
+    <style>
+      body {
+        background-color: bisque;
+      }
+      #cards {
+        border: 1px black solid;
+        font-size: 25px;
+        padding: 15px 15px;
+        box-shadow: 1px 2px 10px 1px black;
+        margin: 20px auto;
+        color: black;
+        border-radius: 10px;
+        background-color: azure;
+        width: 600px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .container2 {
+        border: black solid 2px;
+        padding: 10px;
+
+        text-align: center;
+
+        margin: 20px auto;
+        width: 600px;
+        border-radius: 10px;
+        background-color: azure;
+        box-shadow: 1px 2px 10px 1px black;
+      }
+      .input {
+        border: solid black 2px;
+        padding: 2px 2px;
+        margin: 5px;
+        height: 25px;
+        border-radius: 10px;
+        font-size: 15px;
+      }
+      .btn-add {
+        border: 2px solid black;
+        padding: 6px;
+        border-radius: 10px;
+      }
+      .priority {
+        border: 2px solid black;
+        padding: 6px;
+        border-radius: 10px;
+      }
+      @media (max-width: 500px) {
+        .container2 {
+          margin-left: 30px;
+          width: 300px;
+        }
+        #cards {
+          width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To Do List</h1>
+    <div class="container">
+      <div class="cards"></div>
+    </div>
+    <div class="container2">
+      <input type="text" class="input" placeholder="Enter The Task" />
+      <select class="priority">
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+      </select>
+      <button class="btn-add">Add Task</button>
+    </div>
+    <script>
+      const toDoList = document.querySelector(".cards");
+      const addButton = document.querySelector(".btn-add");
+      const inputTask = document.querySelector(".input");
+      const prioritySelect = document.querySelector(".priority");
+
+      const taskList = new Map();
+
+      addButton.addEventListener("click", function () {
+        if (!inputTask.value) {
+          alert("Enter the Task");
+        } else {
+          taskList.set("task", inputTask.value);
+          taskList.set("priority", prioritySelect.value);
+          toDoList.innerHTML += `<div id="cards"><b>Task Name:-</b>${taskList.get(
+            "task"
+          )}</br>Priority:-${taskList.get("priority")}`;
+        }
+        inputTask.value = "";
+      });
+    </script>
+  </body>
+</html>
